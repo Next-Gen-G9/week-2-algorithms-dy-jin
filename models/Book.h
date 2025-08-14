@@ -17,6 +17,9 @@ using namespace std;
 struct Book {
     // Add member variables here
     string title;
+    int id;
+    string author;
+    bool isAvailable = true;
 };
 
 #endif // BOOK_H
