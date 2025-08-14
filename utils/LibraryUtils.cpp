@@ -3,6 +3,7 @@
 #include <fstream>
 #include <limits>
 #include <algorithm>
+using namespace std;
 
 const std::string BOOKS_FILENAME = "data/books.dat";
 const std::string USERS_FILENAME = "data/users.dat";
