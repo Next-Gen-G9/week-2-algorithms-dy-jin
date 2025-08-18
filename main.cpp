@@ -16,6 +16,17 @@ void showPromotionalBooks() {
     // 2. Initialize it with three hard-coded book IDs, for example: {1, 5, 10}.
     // 3. Print a header, like "--- Today's Featured Books (IDs) ---".
     // 4. Write a loop to iterate through the 'promoIDs' array and print each ID.
+    int promoIDs[5];
+    promoIDs[0]=1;
+    promoIDs[1]=5;
+    promoIDs[10];
+
+    cout<<"--------Today's Featured Books (IDs)\n";
+
+    for(int i=0; i<i; i++){
+        cout<<"Books ID: "<<promoIDs[i]<<endl;
+    }
+
 }
 
 // --- MAIN APPLICATION (FRAMEWORK) ---
