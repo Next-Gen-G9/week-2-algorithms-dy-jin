@@ -19,7 +19,7 @@ struct Book {
     string title;
     int id;
     string author;
-    bool isAvailable = true;
+    bool isAvailable;
 };
 
 #endif // BOOK_H
