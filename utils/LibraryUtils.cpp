@@ -180,19 +180,42 @@ void sortBooksByTitle(std::vector<Book>& books) {
     // 3. Inside the inner loop, compare the 'title' of book[j] with book[j+1].
     // 4. If book[j].title is greater than book[j+1].title, swap the two elements. (Hint: std::swap is useful here).
     // 5. After the loops complete, print a confirmation message.
+    // Bubble Sort by title (easy version)
+    for (int i = 0; i < books.size(); i++) {
+        for (int j = 0; j < books.size() - i - 1; j++) {
+            if (books[j].title > books[j + 1].title) {
+                swap(books[j], books[j + 1]);
+            }
+        }
+    }
+    cout << "Books sorted by title.\n";
 }
 
-// STUDENT TASK: Implement the Binary Search algorithm.
-// This exercise covers: algorithms
+// Binary Search by title (easy version)
 void binarySearchByTitle(const std::vector<Book>& books) {
-    // NOTE: This function assumes the vector is already sorted by title.
-    // 1. Prompt the user for the exact "title to find: ".
-    // 2. Initialize 'low' to 0 and 'high' to the last index of the vector.
-    // 3. Start a 'while' loop that continues as long as low <= high.
-    // 4. Inside the loop, calculate the 'mid' index.
-    // 5. Compare the title of the book at the 'mid' index with the search term.
-    //    - If they match, print the book's details and exit the function.
-    //    - If the mid book's title is less than the search term, set 'low = mid + 1'.
-    //    - Otherwise, set 'high = mid - 1'.
-    // 6. If the loop finishes without finding the book, print a "not found" message.
+     // NOTE: This function assumes the vector is already sorted by title.
+    string title;
+    cout << "Enter title to find: ";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+    getline(cin, title);
+
+    int low = 0, high = books.size() - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        if (books[mid].title == title) {
+            cout << "Found: " << books[mid].title 
+                 << " by " << books[mid].author
+                 << " | " << (books[mid].isAvailable ? "Available" : "Unavailable")
+                 << endl;
+            return;
+        }
+
+        if (books[mid].title < title) 
+            low = mid + 1;
+        else 
+            high = mid - 1;
+    }
+
+    cout << "Book not found.\n";
 }
