@@ -49,18 +49,13 @@ int main() {
     return 0;
 }
 
-void runAdminSession() {
-    // The main loop for the admin is provided.
-    // It calls the functions you will implement in LibraryUtils.cpp.
-    vector<Book> libraryBooks = loadBooks();
+
+// --- ADMIN SESSION ---
+void runAdminSession(vector<Book>& libraryBooks) {
     bool booksAreSorted = false;
-    
-    while(true) {
-        // ... Admin menu and switch statement ...
-        // Example case:
-        // case 1: addBook(libraryBooks); booksAreSorted = false; break;
-        // case 7: showPromotionalBooks(); break; // <-- Your new array function
-       cout << "\n ---- Admin Menu ----\n";
+
+    while (true) {
+        cout << "\n ---- Admin Menu ----\n";
         cout << "1. Add Book\n";
         cout << "2. Remove Book\n";
         cout << "3. View All Books\n";
@@ -69,6 +64,7 @@ void runAdminSession() {
         cout << "6. Sort Books by Author\n";
         cout << "7. Show Promotional Books\n";
         cout << "0. Logout\n";
+        cout << "Enter choice: ";
 
         int choice;
         cin >> choice;
@@ -84,14 +80,20 @@ void runAdminSession() {
             case 3:
                 viewAllBooks(libraryBooks);
                 break;
-            case 4:
-                searchBookById(libraryBooks);
+            case 4: {
+                int id;
+                cout << "Enter Book ID: ";
+                cin >> id;
+                searchBookById(libraryBooks, id);
                 break;
+            }
             case 5:
                 sortBooksByTitle(libraryBooks);
+                booksAreSorted = true;
                 break;
             case 6:
                 sortBooksByAuthor(libraryBooks);
+                booksAreSorted = true;
                 break;
             case 7:
                 showPromotionalBooks();
@@ -106,7 +108,7 @@ void runAdminSession() {
 }
 
 // --- USER SESSION ---
-void runUserSession() {
+void runUserSession(vector<Book>& libraryBooks) {
     while (true) {
         cout << "\n===== User Menu =====\n";
         cout << "1. View All Books\n";
@@ -122,28 +124,27 @@ void runUserSession() {
 
         switch (choice) {
             case 1:
-                cout << "\n--- All Books ---\n";
-                showAllBooks();
+                viewAllBooks(libraryBooks);
                 break;
             case 2: {
-                cout << "\nEnter Book ID: ";
                 int id;
+                cout << "Enter Book ID: ";
                 cin >> id;
-                searchBookById(id);
+                searchBookById(libraryBooks, id);
                 break;
             }
             case 3: {
-                cout << "\nEnter Book ID to Borrow: ";
                 int id;
+                cout << "Enter Book ID to Borrow: ";
                 cin >> id;
-                borrowBook(id);
+                borrowBook(libraryBooks, id);
                 break;
             }
             case 4: {
-                cout << "\nEnter Book ID to Return: ";
                 int id;
+                cout << "Enter Book ID to Return: ";
                 cin >> id;
-                returnBook(id);
+                returnBook(libraryBooks, id);
                 break;
             }
             case 5:

@@ -26,7 +26,7 @@ void saveUsers(const std::vector<User>& users) { /* ... Provided ... */ }
 // =======================================================
 
 // --- File I/O (Provided Framework) ---
-void saveBooks(const std::vector<Book>& books) {
+void saveBooks(const std::vecto r<Book>& books) {
     std::ofstream file(BOOKS_FILENAME);
     if (!file.is_open()) return;
     for (const auto& book : books) {
@@ -149,7 +149,26 @@ void returnBook(std::vector<Book>& books) {
     // 4. If valid, check if the book is NOT available.
     // 5. If it's not available, set 'isAvailable' to true.
     // 6. Print confirmation or error messages.
+    int id;
+    cout << "Enter ID of book to return";
+    cin >> id;
+
+    Book* book = findBookById(books, id);
+    if ( book != nullptr) {
+        if (!book->isAvailable) {
+            book->isAvailable = true;
+            cout << "The book \"" << book -> title << "\" was not checked out.\n";
+        } else { 
+            cout << "The book \"" << book-> title << "\" was not checked out.\n";
+        }   
+    } else {
+       cout << "Book with ID " << id << "not found.\n";
+    }
 }
+
+
+
+
 
 // STUDENT TASK: Implement the Bubble Sort algorithm.
 // This exercise covers: algorithms
